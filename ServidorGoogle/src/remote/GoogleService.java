@@ -4,12 +4,15 @@ package remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 
 public class GoogleService extends UnicastRemoteObject implements IGoogle {
 	private static final long serialVersionUID = 1L;
-	private List<String> emails = new ArrayList<>();
+	private Map<String, String> usuarios = new HashMap<>();
 	
 	//Attribute for the Singleton pattern
 	public static GoogleService instance;
@@ -20,8 +23,8 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
 	
 	private void initilizeData() {
 		
-		emails.add("paula");
-		emails.add("joseba");
+		usuarios.put("joseba", "joseba");
+		usuarios.put("paula", "paula");
 
 	}
 	
@@ -38,15 +41,14 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
 	}	
 	
 	@Override
-	public boolean checkUsuario(String email) throws RemoteException {
+	public boolean checkUsuario(String email, String contrasenya) throws RemoteException {
 		
-		boolean result = false;
-		for (String e : emails) {
-			if(e.equals(email)) {
-				result= true;
-				System.out.println("Usuario encontrado");
+
+		if(usuarios.containsKey(email)) {
+			if(usuarios.get(email).matches(contrasenya)) {
+				return true;
 			}
 		}
-		return result;
+		return false;
 	}
 }
