@@ -43,7 +43,6 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
 	@Override
 	public boolean checkUsuario(String email, String contrasenya) throws RemoteException {
 		
-
 		if(usuarios.containsKey(email)) {
 			if(usuarios.get(email).matches(contrasenya)) {
 				return true;
