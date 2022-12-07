@@ -50,4 +50,12 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
 		}
 		return false;
 	}
+
+	@Override
+	public boolean checkEmail(String email) throws RemoteException {
+		if(usuarios.containsKey(email)) {
+			return true;
+		}
+		return false;
+	}
 }

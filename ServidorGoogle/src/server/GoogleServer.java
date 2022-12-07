@@ -5,7 +5,7 @@ import java.rmi.Naming;
 import remote.GoogleService;
 import remote.IGoogle;
 
-public class CurrecyExchangeServer {
+public class GoogleServer {
 
 	public static void main(String[] args) {
 		if (System.getSecurityManager() == null) {
